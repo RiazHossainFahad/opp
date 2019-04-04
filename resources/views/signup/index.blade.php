@@ -60,7 +60,7 @@
 
     <div class="col-sm-12">
         <div class="well">
-            <h3>Online prescription Point</h3>
+            <h3>Online Prescription Point</h3>
         </div>
     </div>
 
@@ -75,6 +75,7 @@
                     </div>
                     <div class="panel-body">
                         <form class="form" action="" method="POST">
+                            @csrf
                             <div class="row">
                                 <div class="form-group col-xs-6">
                                     <input type="text" name="f_name" class="form-control" placeholder="Firstname" data-toggle="tooltip" title="Enter firstname">
@@ -117,7 +118,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="text" name="dob" id="datePicker" class="form-control" placeholder="Date of Birth" data-toggle="tooltip" title="Enter date of birth">
+                                <input type="text" name="dob" id="datePicker" class="form-control" placeholder="Date of Birth" data-toggle="tooltip" title="Enter date of birth..Format: YYYY-MM-DD">
                                 <span id="dob_error"></span>
                             </div>
 

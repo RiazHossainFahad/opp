@@ -68,7 +68,7 @@
     <body>
         <div class="col-sm-12">
             <div class="well">
-                <h3>Online prescription Point</h3>
+                <h3>Online Prescription Point</h3>
             </div>
         </div>
 
@@ -86,6 +86,7 @@
                </div> --}}
 
             <form method="POST">
+                @csrf
                 <p>UserMail</p>
                 <input type="email" name="email" data-toggle="tooltip" title="Enter your email" placeholder="Email Address">
                 <span id="e_error"></span>

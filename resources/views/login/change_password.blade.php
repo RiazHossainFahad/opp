@@ -19,7 +19,25 @@
         var error_email = true;
         var error_pass = true;
         var error_cpass = true;
-
+        var error_emailExist = true;
+        
+        $('input[name="email"]').keyup(function() {
+        var value = $('input[name="email"]').val();
+        $.ajax({
+            type: 'GET',
+            url: "/register/ajax/" + value,
+            success: function(result) {
+                if (result.length != '') {
+                    error_emailExist = true;
+                    $('#e_error').html("");
+                } else {
+                    error_emailExist = false;
+                    $('#e_error').html('*Invalid email address')
+                        .css({ 'color': 'red' });
+                }
+            }
+        });
+    });
             $('input[name="email"]').focusout(function() {
                  validateEmail();
             });
@@ -31,8 +49,10 @@
             $('#e_error').html('*Email is required')
                 .css({ 'color': 'red' });
         } else {
+            if(error_emailExist){
             error_email = true;
             $('#e_error').html("");
+            }
         }
         return error_email;
     }
@@ -96,8 +116,7 @@
         var error_p = validatePassword();
         var error_cp = validateConfirmPassword();
 
-
-        if (error_e == true && error_p == true && error_cp == true) {
+        if (error_e && error_p && error_cp && error_emailExist) {
             return true;
         } else {
             return false;
@@ -148,7 +167,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="well">
-                <label class="h3">Online prescription Point</label>
+                <label class="h3">Online Prescription Point</label>
             </div>
         </div>
     </div>
@@ -175,7 +194,8 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                             <input type="password" class="form-control" name="c_pass" placeholder="Re-enter Password" data-toggle="tooltip" title="Re-type the password" required>
-                        </div><span id="cp_error"></span><br>
+                        </div><span id="cp_error"></span>
+                        <hr>
 
                         <center>
 

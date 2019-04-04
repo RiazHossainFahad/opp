@@ -2,17 +2,35 @@ $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip({ placement: 'auto top' });
 
     $("#datePicker").datepicker({
-        dateFormat: 'dd/mm/yy',
+        dateFormat: 'yy-mm-dd',
         maxDate: "-216M -0D"
     });
-
 
     var error_firstname = true;
     var error_lastname = true;
     var error_email = true;
+    var error_emailExist = true;
     var error_pass = true;
     var error_cpass = true;
     var error_dob = true;
+
+    $('input[name="email"]').keyup(function() {
+        var value = $('input[name="email"]').val();
+        $.ajax({
+            type: 'GET',
+            url: "/register/ajax/" + value,
+            success: function(result) {
+                if (result.length != '') {
+                    error_emailExist = false;
+                    $('#e_error').html('*Email is already registered')
+                        .css({ 'color': 'red' });
+                } else {
+                    error_emailExist = true;
+                    $('#e_error').html("");
+                }
+            }
+        });
+    });
 
     $('input[name="f_name"]').focusout(function() {
         validateFirstname();
@@ -59,8 +77,10 @@ $(document).ready(function() {
             $('#e_error').html('*Email is required')
                 .css({ 'color': 'red' });
         } else {
-            error_email = true;
-            $('#e_error').html("");
+            if (error_emailExist) {
+                error_email = true;
+                $('#e_error').html("");
+            }
         }
         return error_email;
     }
@@ -142,7 +162,6 @@ $(document).ready(function() {
         var error_p = validatePassword();
         var error_cp = validateConfirmPassword();
         var error_d = validatedob();
-
 
         if (error_fn == true && error_ln == true && error_e == true && error_p == true && error_cp == true && error_d == true) {
             return true;

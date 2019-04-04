@@ -15,14 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('login.index');
-});
+Route::get('/login','LoginController@index')->name('login.index');
+Route::post('/login','LoginController@check')->name('login.validate');
 
 Route::get('/change-password', function () {
     return view('login.change_password');
 });
 
-Route::get('/register', function () {
-    return view('registration.index');
-});
+Route::get('/register','SignupController@index')->name('signup.index');
+Route::post('/register','SignupController@create')->name('signup.create');
+Route::get('/register/ajax/{value}','SignupController@getEmail')->name('signup.getEmail');
