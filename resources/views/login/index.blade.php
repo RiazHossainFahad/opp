@@ -10,14 +10,58 @@
     
     <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 
-    <link rel="stylesheet" type="text/css" href="/jQueryUI/jquery-ui.min.css" media="all">
-    <link rel="stylesheet" type="text/css" href="/jQueryUI/jquery-ui.structure.min.css" media="all">
-    <link rel="stylesheet" type="text/css" href="/jQueryUI/jquery-ui.theme.min.css" media="all">
-    <script type="text/javascript" src="/jQueryUI/jquery-ui.min.js"></script>
-
     <script>
     $(document).ready(function(){
              $('[data-toggle="tooltip"]').tooltip({placement: "auto top"});
+
+            var error_email = true;
+            var error_pass = true;
+
+            $('input[name="email"]').focusout(function() {
+                 validateEmail();
+            });
+
+    function validateEmail() {
+        var em = $('input[name="email"]').val();
+        if ($.trim(em) == "") {
+            error_email = false;
+            $('#e_error').html('*Email is required')
+                .css({ 'color': 'red' });
+        } else {
+            error_email = true;
+            $('#e_error').html("");
+        }
+        return error_email;
+    }
+
+    $('input[name="pass"]').focusout(function() {
+        validatePassword();
+    });
+
+    function validatePassword() {
+        var p = $('input[name="pass"]').val();
+        if ($.trim(p) == "") {
+            error_pass = false;
+            $('#p_error').html('*Password is required')
+                .css({ 'color': 'red' });
+        } else {
+            error_pass = true;
+            $('#p_error').html("");
+        }
+        return error_pass;
+    }
+
+    $('input[type="submit"]').click(function() {
+        var error_e = validateEmail();
+        var error_p = validatePassword();
+
+
+        if (error_e == true && error_p == true) {
+            return true;
+        } else {
+            return false;
+        }
+    });
         });
     </script>
 </head>
@@ -31,14 +75,31 @@
         <div class="loginbox">
             <img src="avatar.png" class="avatar">
             <h1>Login</h1>
+
+            {{-- <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <ul>
+                 @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                 @endforeach
+                </ul>
+               </div> --}}
+
             <form method="POST">
                 <p>UserMail</p>
-                <input type="text" name="email" data-toggle="tooltip" title="Enter your email" placeholder="Email Address">
+                <input type="email" name="email" data-toggle="tooltip" title="Enter your email" placeholder="Email Address">
+                <span id="e_error"></span>
+                
                 <p>Password</p>
                 <input type="password" name="pass" data-toggle="tooltip" title="Enter your password" placeholder="Password">
+                <span id="p_error"></span>
+                
                 <input type="submit" value="Login" data-toggle="tooltip" title="Click to login">
+                
                 <a id="back" data-toggle="tooltip" title="Back to landing page" class="btn btn-danger" href="/">Back</a><br>
+                
                 <a class="ancor" data-toggle="tooltip" title="Change your password" href="/change-password">Lost your password?</a><br>
+                
                 <a class="ancor" data-toggle="tooltip" title="Go to signup page" href="/register">Don't have an account?</a>
             </form>
 
