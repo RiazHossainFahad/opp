@@ -69,7 +69,7 @@ input[type="password"] {
     border: none;
     outline: none;
     height: 40px;
-    background: #fb2525;
+    background: #07ff28;
     color: #fff;
     font-size: 18px;
     border-radius: 20px;
@@ -81,13 +81,24 @@ input[type="password"] {
     color: #000;
 }
 
-.loginbox a {
+.loginbox #back {
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 40px;
+    background: #fb2525;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.loginbox .ancor {
     text-decoration: none;
     font-size: 12px;
     line-height: 20px;
     color: rgb(63, 6, 6);
 }
 
-.loginbox a:hover {
+.loginbox .ancor:hover {
     color: #99130a;
 }

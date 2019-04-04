@@ -19,6 +19,10 @@ Route::get('/login', function () {
     return view('login.index');
 });
 
+Route::get('/change-password', function () {
+    return view('login.change_password');
+});
+
 Route::get('/register', function () {
     return view('registration.index');
 });

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').tooltip({ placement: 'auto top' });
 
     $("#datePicker").datepicker({
         dateFormat: 'dd/mm/yy',
