@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/login','LoginController@index')->name('login.index');
-Route::post('/login','LoginController@check')->name('login.validate');
+Route::post('/login','LoginController@check');
 
 Route::get('/change-password', 'ForgotPasswordController@index')->name('forgotPassword.index');
 Route::post('/change-password', 'ForgotPasswordController@changePassword');

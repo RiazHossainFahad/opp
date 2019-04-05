@@ -24,7 +24,7 @@ h3 {
     position: absolute;
     transform: translate(-50%, -50%);
     box-sizing: border-box;
-    padding: 70px 30px;
+    padding: 50px 30px;
 }
 
 .avatar {
@@ -68,7 +68,7 @@ input[type="password"] {
 .loginbox input[type="submit"] {
     border: none;
     outline: none;
-    height: 40px;
+    height: 35px;
     background: #07ff28;
     color: #fff;
     font-size: 18px;
@@ -85,7 +85,7 @@ input[type="password"] {
     border: none;
     outline: none;
     width: 100%;
-    height: 40px;
+    height: 35px;
     background: #fb2525;
     color: #fff;
     font-size: 18px;

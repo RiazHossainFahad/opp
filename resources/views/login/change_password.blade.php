@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <script src="/assets/jquery/jquery.js"></script>
-    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 
 
     <script>
@@ -111,7 +110,7 @@
     }
 
 
-    $('button').click(function() {
+    $('button[type="submit"]').click(function() {
         var error_e = validateEmail();
         var error_p = validatePassword();
         var error_cp = validateConfirmPassword();
@@ -124,7 +123,6 @@
         });
     });
     </script>
-</head>
 <style>
     body {
         overflow-x: hidden;
@@ -166,7 +164,7 @@
         background-color: #fff
     }
 </style>
-
+</head>
 <body>
     <div class="row">
         <div class="col-sm-12">
@@ -183,6 +181,12 @@
                     <h3> <strong>Change Password</strong></h3>
                 </div>
                 <hr>
+                @if ($message = Session::get('success'))
+                <div style="background:#fff" class="alert alert-success alert-block">
+                 <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ $message }}</strong>
+                </div>
+                @endif
                 <div class="l_pass">
                     <form method="post">
                         @csrf
@@ -212,5 +216,5 @@
         </div>
     </div>
 </body>
-
+<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 </html>
