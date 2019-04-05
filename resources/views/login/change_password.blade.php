@@ -5,9 +5,9 @@
     <title>Forgot Password</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <script src="/assets/jquery/jquery.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 
 
     <script>
@@ -155,11 +155,15 @@
     }
     
     #signup {
-        width: 50%;
+        width: 40%;
         border-radius: 30px;
     }
     span{
-        margin-left: 70%
+        margin-left: 60%
+    }
+
+    .main{
+        background-color: #fff
     }
 </style>
 
@@ -173,7 +177,7 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
             <div class="main-content">
                 <div class="panel panel-default">
                     <h3> <strong>Change Password</strong></h3>
@@ -181,6 +185,7 @@
                 <hr>
                 <div class="l_pass">
                     <form method="post">
+                        @csrf
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                             <input class="form-control" type="email" name="email" data-toggle="tooltip" title="Enter your registered Email" placeholder="Email Address" required>
@@ -196,16 +201,13 @@
                             <input type="password" class="form-control" name="c_pass" placeholder="Re-enter Password" data-toggle="tooltip" title="Re-type the password" required>
                         </div><span id="cp_error"></span>
                         <hr>
-
                         <center>
-
-                            <button id="signup" type="submit" class="btn btn-info btn-lg" name="change" data-toggle="tooltip" title="Click to chenge">Save</button>
-                            </br>
-                            </br>
-                            <a id="signup" href="/login" class="btn btn-danger btn-lg" data-toggle="tooltip" title="Back to login">Back </a>
-                        </center>
+                                <button id="signup" type="submit" class="btn btn-info btn-lg" name="change" data-toggle="tooltip" title="Click to chenge">Save</button>
+                                </br>
+                                </br>
+                                <a id="signup" href="{{route('login.index')}}" class="btn btn-danger btn-lg" data-toggle="tooltip" title="Back to login">Back </a>
+                            </center>
                     </form>
-                </div>
             </div>
         </div>
     </div>

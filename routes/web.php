@@ -18,10 +18,10 @@ Route::get('/', function () {
 Route::get('/login','LoginController@index')->name('login.index');
 Route::post('/login','LoginController@check')->name('login.validate');
 
-Route::get('/change-password', function () {
-    return view('login.change_password');
-});
+Route::get('/change-password', 'ForgotPasswordController@index')->name('forgotPassword.index');
+Route::post('/change-password', 'ForgotPasswordController@changePassword');
 
 Route::get('/register','SignupController@index')->name('signup.index');
-Route::post('/register','SignupController@create')->name('signup.create');
+Route::post('/register','SignupController@create');
+Route::get('/register/additional-info','SignupController@additionalInfo')->name('signup.additionalInfo');
 Route::get('/register/ajax/{value}','SignupController@getEmail')->name('signup.getEmail');

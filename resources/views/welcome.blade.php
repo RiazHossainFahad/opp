@@ -5,9 +5,8 @@
     <title>OPP</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <script src="/assets/jquery/jquery.js"></script>
 </head>
 <style>
     body {
@@ -86,7 +85,7 @@
     </div>
     <div class="row">
         <div class="col-lg-6" style="left:0.5%;">
-            <img src="doctor.jpg" class="img-rounded" title="Online Prescription Point" width="650px" height="565px">
+            <img src="/assets/images/doctor.jpg" class="img-rounded" title="Online Prescription Point" width="650px" height="565px">
             <div id="centered1" class="centered">
                 <h3 ><span class="glyphicon glyphicon-envelope"></span>&nbsp&nbsp<strong>Create an account to join.</strong></h3>
             </div>
@@ -98,7 +97,7 @@
             </div>
         </div>
         <div class="col-lg-6" style="left:8%:">
-            <img src="doctor.jpg" class="img-circle leftDiv" title="Coding cafe" width="80px" height="80px">
+            <img src="/assets/images/doctor.jpg" class="img-circle leftDiv" title="Coding cafe" width="80px" height="80px">
             <h2 class="leftDiv"><strong>See how easily take <br> the treatment right now</strong></h2><br><br>
             <h4 class="leftDiv"><strong>Join OPP Today.</strong></h4>
             <form method="post" action="">
@@ -108,5 +107,5 @@
         </div>
     </div>
 </body>
-
+<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 </html>
