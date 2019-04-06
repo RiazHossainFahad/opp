@@ -15,6 +15,16 @@ $(document).ready(function() {
     var error_dob = true;
 
     $('input[name="email"]').keyup(function() {
+        checkEmail();
+    });
+
+    $('input[name="email"]').focusout(function() {
+        checkEmail();
+    });
+
+
+    function checkEmail() {
+
         var value = $('input[name="email"]').val();
         $.ajax({
             type: 'GET',
@@ -30,7 +40,8 @@ $(document).ready(function() {
                 }
             }
         });
-    });
+
+    }
 
     $('input[name="f_name"]').focusout(function() {
         validateFirstname();
@@ -155,7 +166,7 @@ $(document).ready(function() {
         return error_dob;
     }
 
-    $('button').click(function() {
+    $('button[type="submit"]').click(function() {
         var error_fn = validateFirstname();
         var error_ln = validateLastname();
         var error_e = validateEmail();
@@ -163,7 +174,7 @@ $(document).ready(function() {
         var error_cp = validateConfirmPassword();
         var error_d = validatedob();
 
-        if (error_fn == true && error_ln == true && error_e == true && error_p == true && error_cp == true && error_d == true) {
+        if (error_fn && error_ln && error_e && error_p && error_cp && error_d && error_emailExist) {
             return true;
         } else {
             return false;

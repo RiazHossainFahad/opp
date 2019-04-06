@@ -32,7 +32,7 @@
         padding: auto;
     }
     
-    button {
+    #submit {
         float: right;
         width: 50%
     }
@@ -72,9 +72,20 @@
                     <div class="panel-heading">
                         <h2 class="panel-title">Create an Account</h2>
                     </div>
+
                     <div class="panel-body">
+                        
+                        
+                            @if ($message = Session::get('success'))
+                            <div style="background:#fff" class="alert alert-success alert-block form-group">
+                             <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <strong>{{ $message }}</strong>
+                            </div>
+                            @endif
+
                         <form class="form" method="POST">
                             @csrf
+
                             <div class="row">
                                 <div class="form-group col-xs-6">
                                     <input type="text" name="f_name" class="form-control" placeholder="Firstname" data-toggle="tooltip" title="Enter firstname">
@@ -134,7 +145,7 @@
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-xs-7">
-                                        <button type="submit" style="border-radius:30px" class="btn btn-success" data-toggle="tooltip" title="Click to signup">Register</button>
+                                        <button type="submit" id="submit" style="border-radius:30px" class="btn btn-success" data-toggle="tooltip" title="Click to signup">Register</button>
                                     </div>
                                 </div>
 

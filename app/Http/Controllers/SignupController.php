@@ -12,7 +12,29 @@ class SignupController extends Controller
     }
 
     public function create(Request $req){
-        echo 'data inserted';
+        $u_name = $req->f_name.' '.$req->l_name;
+        $u_email = $req->email;
+        $u_type = $req->type;
+        $u_pass = $req->pass;
+        $u_gender = $req->gender;
+        $u_dob = $req->dob;
+        $u_loc = $req->location;
+
+        $status = DB::table('users')->insert(
+            ['u_name'=>$u_name,
+            'u_email'=>$u_email,
+            'u_type'=>$u_type,
+            'u_pass'=>$u_pass,
+            'u_gender'=>$u_gender,
+            'u_dob'=>$u_dob,
+            'u_location'=>$u_loc]
+        );
+
+        if($status){
+            return back()->with('success','Signup successfull!!');
+        }
+
+
     }
 
     public function additionalInfo(){

@@ -25,3 +25,5 @@ Route::get('/register','SignupController@index')->name('signup.index');
 Route::post('/register','SignupController@create');
 Route::get('/register/additional-info','SignupController@additionalInfo')->name('signup.additionalInfo');
 Route::get('/register/ajax/{value}','SignupController@getEmail')->name('signup.getEmail');
+
+Route::get('/doctor', 'DoctorCOntroller@index')->name('doctor.index');
