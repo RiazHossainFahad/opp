@@ -15,21 +15,54 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*
+|--------------------------------------------------------------------------
+| Login Routes
+|--------------------------------------------------------------------------
+*/
 Route::get('/login','LoginController@index')->name('login.index');
 Route::post('/login','LoginController@check');
 
+/*
+|--------------------------------------------------------------------------
+| Forgot password Routes
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/change-password', 'ForgotPasswordController@index')->name('forgotPassword.index');
 Route::post('/change-password', 'ForgotPasswordController@changePassword');
+/*
+|--------------------------------------------------------------------------
+| Signup Routes & AJAX
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/register','SignupController@index')->name('signup.index');
 Route::post('/register','SignupController@create');
-Route::get('/register/additional-info','SignupController@additionalInfo')->name('signup.additionalInfo');
-Route::post('/register/additional-info','SignupController@insertAdditionalInfo');
 Route::get('/register/ajax/{value}','SignupController@getEmail')->name('signup.getEmail');
 
-Route::get('/doctor', 'DoctorCOntroller@index')->name('doctor.index');
-Route::get('/doctor/edit-profile', 'DoctorCOntroller@editProfile')->name('doctor.editProfile');
-Route::post('/doctor/edit-profile', 'DoctorCOntroller@updateInfo');
+Route::group(['middleware' => 'authSession'], function () {
 
-Route::get('/doctor/create-prescription', 'DoctorCOntroller@createPrescription')->name('doctor.createPrescription');
-Route::post('/doctor/create-prescription', 'DoctorCOntroller@storePrescription');
+/*
+|--------------------------------------------------------------------------
+| Additional info Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('/register/additional-info','SignupController@additionalInfo')->name('signup.additionalInfo');
+Route::post('/register/additional-info','SignupController@insertAdditionalInfo');
+
+/*
+|--------------------------------------------------------------------------
+| Doctor Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('/doctor', 'DoctorController@index')->name('doctor.index');
+Route::get('/doctor/edit-profile', 'DoctorController@editProfile')->name('doctor.editProfile');
+Route::post('/doctor/edit-profile', 'DoctorController@updateInfo');
+
+Route::get('/doctor/create-prescription', 'DoctorController@createPrescription')->name('doctor.createPrescription');
+Route::post('/doctor/create-prescription', 'DoctorController@storePrescription');
+
+
+Route::get('/logout','LogoutController@index')->name('logout.index');
+});
