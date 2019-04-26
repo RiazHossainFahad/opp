@@ -24,6 +24,12 @@ Route::post('/change-password', 'ForgotPasswordController@changePassword');
 Route::get('/register','SignupController@index')->name('signup.index');
 Route::post('/register','SignupController@create');
 Route::get('/register/additional-info','SignupController@additionalInfo')->name('signup.additionalInfo');
+Route::post('/register/additional-info','SignupController@insertAdditionalInfo');
 Route::get('/register/ajax/{value}','SignupController@getEmail')->name('signup.getEmail');
 
 Route::get('/doctor', 'DoctorCOntroller@index')->name('doctor.index');
+Route::get('/doctor/edit-profile', 'DoctorCOntroller@editProfile')->name('doctor.editProfile');
+Route::post('/doctor/edit-profile', 'DoctorCOntroller@updateInfo');
+
+Route::get('/doctor/create-prescription', 'DoctorCOntroller@createPrescription')->name('doctor.createPrescription');
+Route::post('/doctor/create-prescription', 'DoctorCOntroller@storePrescription');

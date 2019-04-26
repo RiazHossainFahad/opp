@@ -6,16 +6,16 @@
     <title>Registration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
-    <script src="/assets/jquery/jquery.js"></script>
+    <link rel="stylesheet" href="{{asset('/assets/bootstrap/css/bootstrap.min.css')}}">
+    <script src="{{asset('/assets/jquery/jquery.js')}}"></script>
 
-    <link rel="stylesheet" type="text/css" href="/jQueryUI/jquery-ui.min.css" media="all">
-    <link rel="stylesheet" type="text/css" href="/jQueryUI/jquery-ui.structure.min.css" media="all">
-    <link rel="stylesheet" type="text/css" href="/jQueryUI/jquery-ui.theme.min.css" media="all">
-    <script type="text/javascript" src="/jQueryUI/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{asset('/jQueryUI/jquery-ui.min.css')}}" media="all">
+    <link rel="stylesheet" type="text/css" href="{{asset('/jQueryUI/jquery-ui.structure.min.css')}}" media="all">
+    <link rel="stylesheet" type="text/css" href="{{asset('/jQueryUI/jquery-ui.theme.min.css')}}" media="all">
+    <script type="text/javascript" src="{{asset('/jQueryUI/jquery-ui.min.js')}}"></script>
 
 
-    <script type="text/javascript" src="/js/registration.js"></script>
+    <script type="text/javascript" src="{{asset('/js/registration.js')}}"></script>
 
 <style>
     body {
@@ -168,5 +168,5 @@
     </div>
 
 </body>
-<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="{{asset('/assets/bootstrap/js/bootstrap.min.js')}}"></script>
 </html>

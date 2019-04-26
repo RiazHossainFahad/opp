@@ -6,9 +6,9 @@
  <meta http-equiv="X-UA-Compatible" content="ie=edge">
  <title>Additional Info</title>
  
- <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
- <script src="/assets/jquery/jquery.js"></script>
- <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="{{asset('/assets/bootstrap/css/bootstrap.min.css')}}">
+ <script src="{{asset('/assets/jquery/jquery.js')}}"></script>
+ <script src="{{asset('/assets/bootstrap/js/bootstrap.min.js')}}"></script>
 
  <style>
   body {
@@ -54,7 +54,8 @@
  <div class="row">
      <div class=" col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-4 col-md-4 col-md-offset-4">
 
-      <form action="post" action="">
+      <form method="post">
+        @csrf
          <table class="table">
           <thead>
            <tr>
@@ -62,16 +63,34 @@
            </tr>
           </thead>
           <tbody>
-           
+              @if (count($errors) > 0)
+              <tr>
+              <div class="alert alert-danger">
+               <button type="button" class="close" data-dismiss="alert">×</button>
+               <ul>
+                @foreach ($errors->all() as $error)
+                 <li>{{ $error }}</li>
+                @endforeach
+               </ul>
+              </div>
+            </tr>
+             @endif
+             @if ($message = Session::get('success'))
+             <div class="alert alert-success alert-block">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+                     <strong>{{ $message }}</strong>
+             </div>
+             @endif
            <tr>
             <td>
              <div class="form-group">
               <label for="">Hospital name:</label>
-              <input type="text" class="form-control" name="hospital_name" placeholder="Enter your hospital-name." required>
+              <input type="text" class="form-control" name="hospital_name" placeholder="Hospital name." required value="{{old('hospital_name')}}">
              </div>
             </td>
            </tr>
-        
+        @if ($type == 'Doctor')
+            
            <tr>
             <td>
               <div class="form-group">
@@ -84,12 +103,12 @@
                </div>
             </td>
            </tr>
-           
+        @endif
            <tr>
              <td>
               <div class="form-group">
                <label for="">License number:</label>
-               <input type="text" class="form-control" name="lic_no" placeholder="Enter your License-Number." required>
+               <input type="text" class="form-control" name="lic_no" placeholder="License Number." required value="{{old('lic_no')}}">
               </div>
              </td>
             </tr>

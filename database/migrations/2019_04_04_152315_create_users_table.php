@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('u_gender');
             $table->date('u_dob');
             $table->string('u_location');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

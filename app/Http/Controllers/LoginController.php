@@ -17,6 +17,7 @@ class LoginController extends Controller
                     ->where('u_pass','=',$req->pass)
                     ->first();
         if($user){
+            session(['user' => $user]);
             return redirect()->route('doctor.index');
         }else{
             return back()->with('success', 'Invalid User!');

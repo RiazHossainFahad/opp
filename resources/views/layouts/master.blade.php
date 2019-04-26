@@ -8,9 +8,9 @@
         <title>@yield('title')</title>
 
          <!-- Bootstrap CSS file -->
-        <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{asset('/assets/bootstrap/css/bootstrap.min.css')}}">
         <!-- Custom CSS -->
-        <link rel="stylesheet" href="/css/sidebarStyle.css">
+        <link rel="stylesheet" href="{{asset('/css/sidebarStyle.css')}}">
         @yield('styleSection')
     </head>
     <body>
@@ -24,24 +24,26 @@
                 </div>
 
                 <ul class="list-unstyled components">
-                    <li class="active">
-                        <a href="">
+                    <li @yield('ah')>
+                        <a @yield('ahh')>
                             <i class="glyphicon glyphicon-home"></i>
                             Home
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
+                    <li @yield('aep')>
+                        <a @yield('aeph')>
                             <i class="glyphicon glyphicon-pencil"></i>
                             Edit Profile
                         </a>
-                        <a href="">
+                    </li>
+                    <li @yield('an')>
+                        <a @yield('anh')>
                             <i class="glyphicon glyphicon-bell"></i>
                             Notication
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
+                    <li @yield('ap')>
+                        <a @yield('aph')>
                             <i class="glyphicon glyphicon-link"></i>
                             Prescription
                         </a>
@@ -105,13 +107,13 @@
 
 
         <!-- jQuery file -->
-         <script src="/assets/jquery/jquery.js"></script>
+         <script src="{{asset('/assets/jquery/jquery.js')}}"></script>
          <!-- Bootstrap Js file -->
-         <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+         <script src="{{asset('/assets/bootstrap/js/bootstrap.min.js')}}"></script>
 
          <script type="text/javascript">
              $(document).ready(function () {
-
+                @yield('txt')
                  $('#sidebarCollapse').on('click', function () {
                      $('#sidebar').toggleClass('active');
                      if($(window).width()<768){

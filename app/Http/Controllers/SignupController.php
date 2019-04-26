@@ -38,7 +38,33 @@ class SignupController extends Controller
     }
 
     public function additionalInfo(){
-        return view('signup.additional_info');
+        return view('signup.additional_info')->withType(session('user')->u_type);
+    }
+
+    public function insertAdditionalInfo(Request $req){
+        $req->validate([
+            'hospital_name' => 'required',
+            'lic_no' =>'required|unique:additional_info'
+        ]);
+
+        if($req->degree == null){
+            $req->degree = 'degree';
+        }
+        $insert = DB::table('additional_info')
+                        ->insert([
+                            'user_id' => session('user')->id,
+                            'hospital_name'=>$req->hospital_name,
+                            'degree'=>$req->degree,
+                            'lic_no'=>$req->lic_no,
+
+                        ]);
+        if($insert){
+            $updateStatus = DB::table('users')
+                                ->update([
+                                    'status' => 1
+                                ]);
+            return redirect()->route('login.index');
+        }
     }
 
     //ajax call function for email 
