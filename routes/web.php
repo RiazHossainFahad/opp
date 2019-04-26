@@ -63,6 +63,13 @@ Route::post('/doctor/edit-profile', 'DoctorController@updateInfo');
 Route::get('/doctor/create-prescription', 'DoctorController@createPrescription')->name('doctor.createPrescription');
 Route::post('/doctor/create-prescription', 'DoctorController@storePrescription');
 
+/*
+|--------------------------------------------------------------------------
+| Pharmacy Routes
+|--------------------------------------------------------------------------
+*/
+Route::resource('/pharmacy', 'PharmacyController');
+
 
 Route::get('/logout','LogoutController@index')->name('logout.index');
 });

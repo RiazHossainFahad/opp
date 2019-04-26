@@ -17,22 +17,13 @@ Doctor-Edit Profile
 @endsection
 
 @section('ahh')
-  href="{{route('doctor.index')}}"
+  href="{{route('pharmacy.index')}}"
 @endsection
 @section('aeph')
-  href="{{route('doctor.editProfile')}}"
+  href="{{route('pharmacy.edit',[$user->id])}}"
 @endsection
-@section('aph')
-  href="{{route('doctor.createPrescription')}}"
-@endsection
-
-@section('p')
-<li @yield('ap')>
-  <a @yield('aph')>
-      <i class="glyphicon glyphicon-link"></i>
-      Prescription
-  </a>
-</li>
+@section('an')
+  href="{{route('pharmacy.show',[$user->id])}}"
 @endsection
 
 @section('customBody')
@@ -61,8 +52,9 @@ Doctor-Edit Profile
              </div>
              @endif
 
-          <form method="post">
+          <form method="post" action="{{route('pharmacy.update',[$user->id])}}">
               @csrf
+              {{ method_field('PUT') }}
               <div class="form-group">
               <input type="text" class="form-control" name="u_name" placeholder="Doctor Name" value="{{$user->u_name}}">
               </div>
@@ -84,16 +76,12 @@ Doctor-Edit Profile
               </div>
 
               <div class="form-group">
-                  <input type="text" class="form-control" name="hospital_name" placeholder="Location" value="{{$userAdditional->hospital_name}}">
-              </div>
-
-              <div class="form-group">
-                  <input type="text" class="form-control" name="degree" placeholder="Degree" value="{{$userAdditional->degree}}">
+                  <input type="text" class="form-control" name="hospital_name" placeholder="Location" value="{{$user->hospital_name}}">
               </div>
 
 
               <div class="form-group">
-                  <input type="text" class="form-control" name="lic_no" placeholder="License Number" value="{{$userAdditional->lic_no}}">
+                  <input type="text" class="form-control" name="lic_no" placeholder="License Number" value="{{$user->lic_no}}">
               </div>
 
               <div class="form-group">
@@ -104,7 +92,7 @@ Doctor-Edit Profile
 
               <div class="form-group">
 
-                  <a href="{{route('doctor.index')}}" class="btn btn-large btn-block btn-danger">Back</a>
+                  <a href="{{route('pharmacy.index')}}" class="btn btn-large btn-block btn-danger">Back</a>
 
               </div>
           </form>

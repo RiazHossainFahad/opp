@@ -39,15 +39,11 @@
                     <li @yield('an')>
                         <a @yield('anh')>
                             <i class="glyphicon glyphicon-bell"></i>
-                            Notication
+                            Notication @yield('n')
+
                         </a>
                     </li>
-                    <li @yield('ap')>
-                        <a @yield('aph')>
-                            <i class="glyphicon glyphicon-link"></i>
-                            Prescription
-                        </a>
-                    </li>
+                    @yield('p')
                     {{-- <li>
                         <a href="#">
                             <i class="glyphicon glyphicon-paperclip"></i>
@@ -113,7 +109,7 @@
 
          <script type="text/javascript">
              $(document).ready(function () {
-                @yield('txt')
+                $('[data-toggle="tooltip"]').tooltip({ placement: 'auto top' });
                  $('#sidebarCollapse').on('click', function () {
                      $('#sidebar').toggleClass('active');
                      if($(window).width()<768){

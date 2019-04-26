@@ -18,7 +18,12 @@ class LoginController extends Controller
                     ->first();
         if($user){
             session(['user' => $user]);
+            
+            if($user->u_type == "Doctor")
             return redirect()->route('doctor.index');
+            
+            if($user->u_type == "Pharmacy")
+            return redirect()->route('pharmacy.index');
         }else{
             return back()->with('success', 'Invalid User!');
         }  

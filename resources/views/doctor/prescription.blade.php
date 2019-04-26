@@ -26,6 +26,15 @@ Doctor-Edit Profile
   href="{{route('doctor.createPrescription')}}"
 @endsection
 
+@section('p')
+<li @yield('ap')>
+  <a @yield('aph')>
+      <i class="glyphicon glyphicon-link"></i>
+      Prescription
+  </a>
+</li>
+@endsection
+
 @section('customBody')
 <div class="col-sm-7 col-sm-offset-3">
 
