@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Doctor-Edit Profile
+Pharmacy-Edit Profile
 @endsection
 
 @section('styleSection')
@@ -22,7 +22,7 @@ Doctor-Edit Profile
 @section('aeph')
   href="{{route('pharmacy.edit',[$user->id])}}"
 @endsection
-@section('an')
+@section('anh')
   href="{{route('pharmacy.show',[$user->id])}}"
 @endsection
 

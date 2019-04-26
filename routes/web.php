@@ -68,6 +68,7 @@ Route::post('/doctor/create-prescription', 'DoctorController@storePrescription')
 | Pharmacy Routes
 |--------------------------------------------------------------------------
 */
+Route::post('/pharmacy/request/{id}', 'PharmacyController@storeRequest')->name('pharmacy.storeRequest');
 Route::resource('/pharmacy', 'PharmacyController');
 
 

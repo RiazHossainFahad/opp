@@ -22,15 +22,16 @@ href="{{route('pharmacy.index')}}"
 @section('aeph')
 href="{{route('pharmacy.edit',[$user->id])}}"
 @endsection
-{{-- @section('aph')
-  href="{{route('doctor.createPrescription')}}"
-@endsection --}}
+@section('anh')
+href="{{route('pharmacy.show',[$user->id])}}"
+@endsection
 
 @section('n')
   @if (count($notify) != 0)
   <sup><span class='badge badge-secondary'>{{count($notify)}}</span></sup>      
   @endif    
 @endsection
+
 
 @section('customBody')
   <div style='background-color: #e6e6e6;' class='col-sm-5 col-sm-offset-3'>

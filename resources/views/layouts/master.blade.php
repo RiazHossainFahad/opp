@@ -40,7 +40,6 @@
                         <a @yield('anh')>
                             <i class="glyphicon glyphicon-bell"></i>
                             Notication @yield('n')
-
                         </a>
                     </li>
                     @yield('p')
