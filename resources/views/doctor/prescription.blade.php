@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Doctor-Edit Profile
+Doctor-Prescription
 @endsection
 
 @section('styleSection')
@@ -24,6 +24,9 @@ Doctor-Edit Profile
 @endsection
 @section('aph')
   href="{{route('doctor.createPrescription')}}"
+@endsection
+@section('anh')
+  href="{{route('doctor.showNotification')}}"
 @endsection
 
 @section('p')

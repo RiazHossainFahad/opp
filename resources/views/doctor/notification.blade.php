@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Pharmacy-Notification
+Doctor-Notification
 @endsection
 
 @section('styleSection')
@@ -17,13 +17,26 @@ Pharmacy-Notification
 @endsection
 
 @section('ahh')
-  href="{{route('pharmacy.index')}}"
+href="{{route('doctor.index')}}"
 @endsection
 @section('aeph')
-  href="{{route('pharmacy.edit',[$user->id])}}"
+href="{{route('doctor.editProfile')}}"
+@endsection
+@section('aph')
+  href="{{route('doctor.createPrescription')}}"
 @endsection
 @section('anh')
-  href="{{route('pharmacy.show',[$user->id])}}"
+  href="{{route('doctor.showNotification')}}"
+@endsection
+
+
+@section('p')
+<li @yield('ap')>
+  <a @yield('aph')>
+      <i class="glyphicon glyphicon-link"></i>
+      Prescription
+  </a>
+</li>
 @endsection
 
 @section('customBody')
@@ -68,13 +81,13 @@ Pharmacy-Notification
         <div class="modal-body">
           <div class="panel panel-info">
             <div class="panel-heading">
-                <h4 style="text-align:center" >{{$notify[$i]->p_name}}</h4>
-                <h5 style="text-align:center" >{{$notify[$i]->p_email}}</h5>
-                <h5 style="text-align:center" >{{$notify[$i]->p_phone}}</h5>
-                <h5 style="text-align:center">Date: {{now()->toDateString('Y-m-d')}}</h5>
+                <h4 style="text-align:center" >Patient Name: {{$notify[$i]->p_name}}</h4>
+                <h5 style="text-align:center" >Patient Email: {{$notify[$i]->p_email}}</h5>
+                <h5 style="text-align:center" >Patient Phone # {{$notify[$i]->p_phone}}</h5>
+                <h5 style="text-align:center">Visit Date: {{now()->toDateString('Y-m-d')}}</h5>
             </div>
             <div class="panel-body">
-            <form method="post" action="{{route('pharmacy.storeRequest',$notify[$i]->id)}}">
+            <form method="post" action="{{route('doctor.updateMedicine',$notify[$i]->id)}}">
                 @csrf
                     @if (count($errors) > 0)
                     <div class="alert alert-danger">
@@ -87,26 +100,23 @@ Pharmacy-Notification
                     </div>
                    @endif
 
-                  <div class="row">  
-                     <div class="col-sm-4 form-group">
-                      <h4 class="label-info">Problem Details</h4>
-                      <h4>{{preg_replace('/\<br(\s*)?\/?\>/i', "", $notify[$i]->p_problem)}}</h4>
-                     </div>
-
-                     <div class="col-sm-8 form-group">
-                      <h4 class="label-info">Medicines</h4>
-                      <h4>{{preg_replace('/\<br(\s*)?\/?\>/i','', $notify[$i]->p_medicine)}}</h4>
-                     </div>
-                   </div>
+                   <div class="row">  
+                    <div class="col-sm-4 form-group">
+                    <textarea id="plm" class="form-control" readonly placeholder="Patient Probelms" name="p_problem" required rows="4">{{preg_replace('/<br\\s*?\/??>/i', '', $notify[$i]->p_problem)}}</textarea>
+                    </div>
+                    <div class="col-sm-8 form-group">
+                          <textarea id="md" class="form-control" placeholder="Suggested Medicine and Taking Time" name="p_medicine" required rows="4">{{preg_replace('/<br\\s*?\/??>/i', '', $notify[$i]->p_medicine)}}</textarea>
+                    </div>
+                  </div>
 
                    <div class="row">  
                      <div class="col-sm-12 form-group">
-                  <textarea class="form-control" placeholder="Inform DR. for medicine unavailability" name="req_message" required rows="2"></textarea>
+                      <h4>Request MSG: {{preg_replace('/<br\\s*?\/??>/i', '', $notify[$i]->req_message)}}</h4>
                      </div>
 
 
                    <div class="col-sm-12 form-group">
-                    <button type="submit" class="btn btn-info btn-block">Change Medicine Request</button>
+                    <button type="submit" class="btn btn-info btn-block">Update Medicine</button>
                      </div>
                    </div>
                    
@@ -127,7 +137,7 @@ Pharmacy-Notification
               @endfor
               @else
                   <tr>
-                   <td style="colh2:4">No available prescription in your location</td>
+                   <td style="colspan:4">No change medicine request</td>
                   </tr>
               @endif
              </tbody>

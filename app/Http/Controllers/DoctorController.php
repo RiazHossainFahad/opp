@@ -8,12 +8,20 @@ use Illuminate\Support\Facades\DB;
 class DoctorController extends Controller
 {
     public function index(){
+
         if(session('user')->status == 0){
             return redirect()->route('signup.additionalInfo');
         }
-        else
-        return view('doctor.index')->withUser(session('user'));
+        else{
+        $notify = DB::table('prescriptions')
+            ->where([
+                ['req_status','=',0],
+                ['doctor_id','=',session('user')->id]
+            ])
+            ->get();
+        return view('doctor.index')->withUser(session('user'))->withNotify($notify);
     }
+}
 
     //Edit Profile-Get
     public function editProfile(){
@@ -113,5 +121,31 @@ class DoctorController extends Controller
         return back()->with('success','Probelm Occured while creating prescripton');
     }
 
+    }
+
+    //show notification
+    public function showNotification(){
+        $notify = DB::table('prescriptions')
+                    ->where([
+                        ['req_status','=',0],
+                        ['doctor_id','=',session('user')->id]
+                    ])
+                    ->get();
+        return view('doctor.notification')->withNotify($notify);
+    }
+
+    //update medicine
+    public function updateMedicine(Request $req,$id){
+        $req->validate([
+            'p_medicine' => 'required'
+        ]);
+    $status = DB::table('prescriptions')
+        ->where('id',$id)
+        ->update([
+            'p_medicine' => nl2br($req->p_medicine),
+            'req_message' => 'NONE',
+            'req_status' => 1,
+        ]);
+    return redirect()->route('doctor.showNotification');
     }
 }

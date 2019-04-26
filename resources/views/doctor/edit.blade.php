@@ -25,6 +25,9 @@ Doctor-Edit Profile
 @section('aph')
   href="{{route('doctor.createPrescription')}}"
 @endsection
+@section('anh')
+  href="{{route('doctor.showNotification')}}"
+@endsection
 
 @section('p')
 <li @yield('ap')>

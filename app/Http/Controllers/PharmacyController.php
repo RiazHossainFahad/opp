@@ -55,7 +55,6 @@ class PharmacyController extends Controller
         $notify = DB::table('prescriptions')
                         ->where('p_location','=',session('user')->u_location)
                         ->get();
-                        echo session('user')->u_location;
         return view('pharmacy.notification')
                     ->withUser(session('user'))
                     ->withNotify($notify);
@@ -65,7 +64,7 @@ class PharmacyController extends Controller
         $status = DB::table('prescriptions')
                     ->where('id',$id)
                     ->update([
-                        'req_message' => $req->req_message,
+                        'req_message' => nl2br($req->req_message),
                         'req_status' => 0,
                     ]);
             return redirect()->route('pharmacy.show',session('user')->id);

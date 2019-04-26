@@ -25,6 +25,15 @@ href="{{route('doctor.editProfile')}}"
 @section('aph')
   href="{{route('doctor.createPrescription')}}"
 @endsection
+@section('anh')
+  href="{{route('doctor.showNotification')}}"
+@endsection
+
+@section('n')
+  @if (count($notify) != 0)
+  <sup><span class='badge badge-secondary'>{{count($notify)}}</span></sup>      
+  @endif    
+@endsection
 
 @section('p')
 <li @yield('ap')>

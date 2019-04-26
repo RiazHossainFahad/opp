@@ -63,6 +63,9 @@ Route::post('/doctor/edit-profile', 'DoctorController@updateInfo');
 Route::get('/doctor/create-prescription', 'DoctorController@createPrescription')->name('doctor.createPrescription');
 Route::post('/doctor/create-prescription', 'DoctorController@storePrescription');
 
+Route::get('/doctor/show-notification', 'DoctorController@showNotification')->name('doctor.showNotification');
+Route::post('/doctor/update-medicine/{id}', 'DoctorController@updateMedicine')->name('doctor.updateMedicine');
+
 /*
 |--------------------------------------------------------------------------
 | Pharmacy Routes
