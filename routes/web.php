@@ -74,6 +74,13 @@ Route::post('/doctor/update-medicine/{id}', 'DoctorController@updateMedicine')->
 Route::post('/pharmacy/request/{id}', 'PharmacyController@storeRequest')->name('pharmacy.storeRequest');
 Route::resource('/pharmacy', 'PharmacyController');
 
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('/admin/user_list','AdminController@showAllUser')->name('admin.showAllUser');
+Route::resource('/admin', 'AdminController');
 
 Route::get('/logout','LogoutController@index')->name('logout.index');
 });

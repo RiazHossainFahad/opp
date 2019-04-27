@@ -22,8 +22,11 @@ class LoginController extends Controller
             if($user->u_type == "Doctor")
             return redirect()->route('doctor.index');
             
-            if($user->u_type == "Pharmacy")
+            else if($user->u_type == "Pharmacy")
             return redirect()->route('pharmacy.index');
+            
+            else if($user->u_type == "Admin")
+            return redirect()->route('admin.index');
         }else{
             return back()->with('success', 'Invalid User!');
         }  
