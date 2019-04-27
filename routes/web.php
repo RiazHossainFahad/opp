@@ -80,6 +80,7 @@ Route::resource('/pharmacy', 'PharmacyController');
 |--------------------------------------------------------------------------
 */
 Route::get('/admin/user_list','AdminController@showAllUser')->name('admin.showAllUser');
+Route::post('/admin/{id}/edit-user_account','AdminController@editUser')->name('admin.editUser');
 Route::resource('/admin', 'AdminController');
 
 Route::get('/logout','LogoutController@index')->name('logout.index');

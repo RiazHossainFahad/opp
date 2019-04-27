@@ -28,6 +28,12 @@ Admin-Doctor & admin List
          <h3 style="text-align:center" class="panel-title">Doctor & Pharmacy List</h3>
      </div>
      <div class="panel-body">
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-block">
+         <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>{{ $message }}</strong>
+        </div>
+        @endif
 
 
          <table class="table">
@@ -90,22 +96,23 @@ Admin-Doctor & admin List
       
     </div>
   </div>
-{{--     
+    
+<!-- Modal for edit -->
+  <div class="modal fade" id="myModal-edit-{{$uList[$i]->id}}" role="dialog">
+    <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Information of {{$uList[$i]->u_name}}</h4>
+          <h4 class="modal-title">Edit Information of {{$uList[$i]->u_name}}</h4>
         </div>
         <div class="modal-body">
           <div class="panel panel-info">
             <div class="panel-heading">
-                <h4 style="text-align:center" >{{$uList[$i]->u_name}}</h4>
-                <h5 style="text-align:center" >{{$uList[$i]->u_email}}</h5>
-                <h5 style="text-align:center" >{{$uList[$i]->u_phone}}</h5>
+                <h4 style="text-align:center" >Edit Account Info</h4>
             </div>
             <div class="panel-body">
-            <form method="post" action="{{route('admin.storeRequest',$uList[$i]->id)}}">
+            <form method="post" action="{{route('admin.editUser',$uList[$i]->id)}}">
                 @csrf
                     @if (count($errors) > 0)
                     <div class="alert alert-danger">
@@ -118,28 +125,46 @@ Admin-Doctor & admin List
                     </div>
                    @endif
 
-                  <div class="row">  
-                     <div class="col-sm-4 form-group">
-                      <h4 class="label-info">Problem Details</h4>
-                      <h4>{{preg_replace('/\<br(\s*)?\/?\>/i', "", $uList[$i]->p_problem)}}</h4>
-                     </div>
+             <div class="form-group">
+              <input type="text" class="form-control" name="u_name" placeholder="Your Name" value="{{$uList[$i]->u_name}}" data-toggle='tooltip' title='Name'>
+              </div>
 
-                     <div class="col-sm-8 form-group">
-                      <h4 class="label-info">Medicines</h4>
-                      <h4>{{preg_replace('/\<br(\s*)?\/?\>/i','', $uList[$i]->p_medicine)}}</h4>
-                     </div>
-                   </div>
+              <div class="form-group">
+                  <input type="email" class="form-control" name="u_email" placeholder="Email Address" value="{{$uList[$i]->u_email}}" data-toggle='tooltip' title='Email Address'>
+              </div>
 
-                   <div class="row">  
-                     <div class="col-sm-12 form-group">
-                  <textarea class="form-control" placeholder="Inform DR. for medicine unavailability" name="req_message" required rows="2"></textarea>
-                     </div>
+              <div class="form-group">
+                  <input type="text" class="form-control" name="u_location" placeholder="Location" value="{{$uList[$i]->u_location}}" data-toggle='tooltip' title='Location'>
+              </div>
 
+              <div class="form-group">
+                  <input type="text" class="form-control" name="status" placeholder="Account Status" value="{{$uList[$i]->status}}" data-toggle='tooltip' title='Account Status'>
+              </div>
 
-                   <div class="col-sm-12 form-group">
-                    <button type="submit" class="btn btn-info btn-block">Change Medicine Request</button>
-                     </div>
-                   </div>
+              <div class="form-group">
+                  <input type="text" class="form-control" name="hospital_name" placeholder="Hospital name" value="{{$uList[$i]->hospital_name}}" data-toggle='tooltip' title='Hospital name'>
+              </div>
+
+              @if ($uList[$i]->u_type == 'Doctor')
+               <div class="form-group">
+                  <input type="text" class="form-control" name="degree" placeholder="Degree" value="{{$uList[$i]->degree}}" data-toggle='tooltip' title='Degree'>
+              </div>
+                  
+              @else
+              <div class="form-group">
+                  <input type="hidden" class="form-control" name="degree" placeholder="Degree" value="{{$uList[$i]->degree}}" data-toggle='tooltip' title='Degree'>
+              </div>
+              @endif
+
+              <div class="form-group">
+                  <input type="text" class="form-control" name="lic_no" placeholder="License Number" value="{{$uList[$i]->lic_no}}" data-toggle='tooltip' title='License Number'>
+              </div>
+
+              <div class="form-group">
+
+                  <button type="submit" class="btn btn-large btn-block btn-info">Update Info</button>
+
+              </div>
                    
                 </form>
             </div>
@@ -152,7 +177,7 @@ Admin-Doctor & admin List
       </div>
       
     </div>
-  </div> --}}
+  </div>
              </tr>
 
               @endfor

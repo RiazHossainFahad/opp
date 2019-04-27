@@ -122,4 +122,40 @@ class AdminController extends Controller
                     ->get();
         return view('admin.dr_ph_list')->withUList($uList);
     }
+
+    public function editUser(Request $req, $id){
+        $req->validate([
+            'u_name' => 'required',
+            'u_email' => 'required|email',
+            'u_location' => 'required',
+            'status' => 'required|numeric',
+            'hospital_name' => 'required',
+            'degree' => 'required',
+            'lic_no' => 'required',
+        ]);
+
+        $status = DB::table('users')
+            ->where('id',$id)
+            ->update([
+            'u_name' => $req->u_name,
+            'u_email' => $req->u_email,
+            'status' => $req->status,
+            'u_location' => $req->u_location
+        ]);
+
+        $add_status = DB::table('additional_info')
+                            ->where('user_id',$id)
+                            ->update([
+                                'hospital_name' => $req->hospital_name,
+                                'degree' => $req->degree,
+                                'lic_no' => $req->lic_no,
+                            ]);
+
+        if($status || $add_status){
+            return back()->with('success','Information Updated successfully');
+        }
+        else{
+            return back()->with('success','You update nothing');
+        }
+    }
 }
