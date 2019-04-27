@@ -48,7 +48,7 @@
                                     <a href="{{route('admin.showAllUser')}}">Doctor & Pharmacy List</a>
                                 </li>
                                 <li @yield('pl')>
-                                    <a @yield('plh')>Patient List</a>
+                                    <a href="{{route('admin.showAllPatient')}}">Patient List</a>
                                 </li>
                             </ul>
                         </li>

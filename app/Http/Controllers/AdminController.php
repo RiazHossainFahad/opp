@@ -158,4 +158,42 @@ class AdminController extends Controller
             return back()->with('success','You update nothing');
         }
     }
+
+
+    //get all patient
+    public function showAllPatient(){
+        $pList = DB::table('prescriptions')
+                    ->get();
+        return view('admin.patient_list')->withPList($pList);
+    }
+
+    public function editPatient(Request $req, $id){
+        $req->validate([
+            'p_name' => 'required',
+            'p_email' => 'required|email',
+            'p_location' => 'required',
+            'p_phone' => 'required|numeric',
+            'p_age' => 'required|numeric',
+
+        ]);
+
+        $status = DB::table('prescriptions')
+            ->where('id',$id)
+            ->update([
+            'p_name' => $req->p_name,
+            'p_email' => $req->p_email,
+            'p_phone' => $req->p_phone,
+            'p_age' => $req->p_age,
+            'p_location' => $req->p_location
+        ]);
+
+
+        if($status){
+            return back()->with('success','Information Updated successfully');
+        }
+        else{
+            return back()->with('success','You update nothing');
+        }
+    }
+
 }

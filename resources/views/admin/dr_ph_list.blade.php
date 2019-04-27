@@ -6,7 +6,7 @@ Admin-Doctor & admin List
 
 @section('styleSection')
     <style>
-    .row{
+    .row,th{
     text-align: center;
     }
     </style>

@@ -81,6 +81,10 @@ Route::resource('/pharmacy', 'PharmacyController');
 */
 Route::get('/admin/user_list','AdminController@showAllUser')->name('admin.showAllUser');
 Route::post('/admin/{id}/edit-user_account','AdminController@editUser')->name('admin.editUser');
+
+Route::get('/admin/patient_list','AdminController@showAllPatient')->name('admin.showAllPatient');
+Route::post('/admin/{id}/edit-patient_account','AdminController@editPatient')->name('admin.editPatient');
+
 Route::resource('/admin', 'AdminController');
 
 Route::get('/logout','LogoutController@index')->name('logout.index');
