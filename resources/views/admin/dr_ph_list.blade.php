@@ -55,13 +55,13 @@ Admin-Doctor & admin List
                 <td>{{$uList[$i]->u_location}}</td>
                 <td>{{$uList[$i]->u_type}}</td>
               <td>
-                <a data-toggle="modal" data-target="#myModal-view-{{$uList[$i]->id}}" class="btn btn-success">VIEW</a>
-                <a data-toggle="modal" data-target="#myModal-edit-{{$uList[$i]->id}}" class="btn btn-default">EDIT</a>
-                <a data-toggle="modal" data-target="#myModal--delete-{{$uList[$i]->id}}" class="btn btn-danger">DELETE</a>
+                <a data-toggle="modal" data-target="#myModal-view-{{$uList[$i]->user_id}}" class="btn btn-success">VIEW</a>
+                <a data-toggle="modal" data-target="#myModal-edit-{{$uList[$i]->user_id}}" class="btn btn-default">EDIT</a>
+                <a data-toggle="modal" data-target="#myModal-delete-{{$uList[$i]->user_id}}" class="btn btn-danger">DELETE</a>
 
               </td>
   <!-- Modal for view -->
-  <div class="modal fade" id="myModal-view-{{$uList[$i]->id}}" role="dialog">
+  <div class="modal fade" id="myModal-view-{{$uList[$i]->user_id}}" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -98,7 +98,7 @@ Admin-Doctor & admin List
   </div>
     
 <!-- Modal for edit -->
-  <div class="modal fade" id="myModal-edit-{{$uList[$i]->id}}" role="dialog">
+  <div class="modal fade" id="myModal-edit-{{$uList[$i]->user_id}}" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
@@ -112,7 +112,7 @@ Admin-Doctor & admin List
                 <h4 style="text-align:center" >Edit Account Info</h4>
             </div>
             <div class="panel-body">
-            <form method="post" action="{{route('admin.editUser',$uList[$i]->id)}}">
+            <form method="post" action="{{route('admin.editUser',$uList[$i]->user_id)}}">
                 @csrf
                     @if (count($errors) > 0)
                     <div class="alert alert-danger">
@@ -178,6 +178,42 @@ Admin-Doctor & admin List
       
     </div>
   </div>
+
+
+        <!-- Modal for delete -->
+  <div class="modal fade" id="myModal-delete-{{$uList[$i]->user_id}}" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Warning</h4>
+          </div>
+          <div class="modal-body">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                  <h4 style="text-align:center" >Delete Account of <strong>{{$uList[$i]->u_name}}</strong></h4>
+              </div>             
+
+              <div class="panel-body">
+                <form method='post' action="{{route('admin.deleteUser',$uList[$i]->user_id)}}">
+                  @csrf
+                  <h5 style="text-align:center" >Once click on delete, its parmanently delete</h5>
+                  <h6 style="text-align:center;color:red" >Do you want to delete?</h6>
+                  <button type="submit" style="width:30%" class="btn btn-danger">DELETE</button>
+                </form>
+              </div>             
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+      
              </tr>
 
               @endfor

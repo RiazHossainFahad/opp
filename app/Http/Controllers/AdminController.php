@@ -113,6 +113,41 @@ class AdminController extends Controller
         //
     }
 
+    //delete patient account
+    public function deletePatient($id)
+    {
+
+        $status_p = DB::table('prescriptions')
+            ->where('id',$id)
+            ->delete();
+        
+        if($status_p)
+        return back()->with('success','Suscessfully deleted one Patient.');
+        else
+        return back()->with('success','Error occured while deleting');
+    }
+
+    //delete user account
+    public function deleteUser($id)
+    {
+        $status = DB::table('users')
+            ->where('id',$id)
+            ->delete();
+
+        $status_a = DB::table('additional_info')
+            ->where('user_id',$id)
+            ->delete();
+
+        $status_p = DB::table('prescriptions')
+            ->where('doctor_id',$id)
+            ->delete();
+        
+        if($status || $status_a || $status_p)
+        return back()->with('success','Suscessfully deleted one user.');
+        else
+        return back()->with('success','Error occured while deleting');
+    }
+
 
     public function showAllUser(){
         $uList = DB::table('users')

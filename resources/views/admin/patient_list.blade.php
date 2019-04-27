@@ -57,7 +57,7 @@ Admin-Patient List
               <td>
                 <a data-toggle="modal" data-target="#myModal-view-{{$pList[$i]->id}}" class="btn btn-success">VIEW</a>
                 <a data-toggle="modal" data-target="#myModal-edit-{{$pList[$i]->id}}" class="btn btn-default">EDIT</a>
-                <a data-toggle="modal" data-target="#myModal--delete-{{$pList[$i]->id}}" class="btn btn-danger">DELETE</a>
+                <a data-toggle="modal" data-target="#myModal-delete-{{$pList[$i]->id}}" class="btn btn-danger">DELETE</a>
 
               </td>
   <!-- Modal for view -->
@@ -156,6 +156,41 @@ Admin-Patient List
       
     </div>
   </div>
+
+            <!-- Modal for delete -->
+  <div class="modal fade" id="myModal-delete-{{$pList[$i]->id}}" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Warning</h4>
+          </div>
+          <div class="modal-body">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                  <h4 style="text-align:center" >Delete Account of <strong>{{$pList[$i]->p_name}}</strong></h4>
+              </div>             
+
+              <div class="panel-body">
+                <form method='post' action="{{route('admin.deletePatient',$pList[$i]->id)}}">
+                  @csrf
+                  <h5 style="text-align:center" >Once click on delete, its parmanently delete</h5>
+                  <h6 style="text-align:center;color:red" >Do you want to delete?</h6>
+                  <button type="submit" style="width:30%" class="btn btn-danger">DELETE</button>
+                </form>
+              </div>             
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
              </tr>
 
               @endfor
