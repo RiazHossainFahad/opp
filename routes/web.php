@@ -90,6 +90,17 @@ Route::post('/admin/delete-User/{id}','AdminController@deleteUser')->name('admin
 Route::post('/admin/delete-patient/{id}','AdminController@deletePatient')->name('admin.deletePatient');
 
 Route::resource('/admin', 'AdminController');
+/*
+|--------------------------------------------------------------------------
+| Patient Routes
+|--------------------------------------------------------------------------
+*/
+Route::resource('/patient', 'PatientController');
 
+/*
+|--------------------------------------------------------------------------
+| Logout Routes
+|--------------------------------------------------------------------------
+*/
 Route::get('/logout','LogoutController@index')->name('logout.index');
 });

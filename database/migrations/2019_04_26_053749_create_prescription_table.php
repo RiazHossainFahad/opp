@@ -18,6 +18,7 @@ class CreatePrescriptionTable extends Migration
             $table->integer('doctor_id');
             $table->string('p_name');
             $table->string('p_email');
+            $table->string('p_pass')->default('1234');
             $table->string('p_phone');
             $table->string('p_location');
             $table->string('p_age');

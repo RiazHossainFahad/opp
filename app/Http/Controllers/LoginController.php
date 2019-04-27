@@ -28,6 +28,14 @@ class LoginController extends Controller
             else if($user->u_type == "Admin")
             return redirect()->route('admin.index');
         }else{
+            $patient = DB::table('prescriptions')
+                    ->where('p_email','=',$req->email)
+                    ->where('p_pass','=',$req->pass)
+                    ->first();
+            if($patient){
+                session(['user' => $patient]);
+            return redirect()->route('patient.index');
+            }
             return back()->with('success', 'Invalid User!');
         }  
     }
